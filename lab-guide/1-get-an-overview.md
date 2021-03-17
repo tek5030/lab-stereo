@@ -2,25 +2,20 @@
 We will start by presenting an overview of the lab and the contents of this project.
 
 ## Stereo camera
-![Picture of the Intel RealSense D435](img/realsense_d435_perspective.jpg)
 
-In this lab we will experiment with stereo processing using the Intel RealSense D435 (shown above) which has 4 components:
-  - 1 RGB color camera (rightmost in the image)
-  - 2 panchromatic cameras without that are also sensitive in the invisible near-infrared (NIR) (leftmost & second from the right in the image).
-    These cameras have a global shutter, which lets us avoid geometric distiortions during movement.
-  - 1 NIR laser projector (second from the left in the image).
-    The laser lets us project patterns onto the scene, which is used to support stereo matching in difficult areas.
+In this lab we will experiment with stereo processing using the [Kitti Dataset](http://www.cvlibs.net/datasets/kitti/index.php) which will provide to us:
+  - Raw (unsynced+unrectified) and processed (synced+rectified) grayscale stereo sequences (0.5 Megapixels, stored in png format)
+  - Raw (unsynced+unrectified) and processed (synced+rectified) color stereo sequences (0.5 Megapixels, stored in png format)
+  - Calibration data (stored as text file)
 
-Today, we will mainly use the two panchromatic cameras, but we can choose to activate the projector if we want to. 
-It will illuminate the scene with a dotted pattern.
+We will use the unrectified grayscale images from the dataset, and perform rectification using the provided calibration data.
 
-The D435 is precalibrated, and it can provide us with rectified stereo images.
-To give you some practical experience with stereo calibration, we will instead capture unrectified images from the camera, and start by estimating the calibration parameters ourselves.
+For the course, we have implemented a simple `KittiCamera` in the [camera-library](https://github.com/tek5030/camera-library) repository.
+It can be used to load image pairs and calibration data from the downloaded datasets.
 
-We have implemented a simple interface to the RealSense camera for the course in the [camera-library](https://github.com/tek5030/camera-library) repository.
-This library has already been downloaded and installed on the lab machines.
-If you are doing this lab without access to a RealSense stereo camera, we have also implemented the [dual_camera](https://github.com/tek5030/camera-library/blob/main/include/tek5030/dual_camera.h) interface to `cv::VideoCapture`, which lets you use two ordinary cameras to capture stereo images.
+If you have two webcameras available, we have also implemented the [dual_camera](https://github.com/tek5030/camera-library/blob/main/include/tek5030/dual_camera.h) interface to `cv::VideoCapture`, which lets you use two ordinary cameras to capture stereo images.
 You will in this case need to change the lab code to use this interface instead.
+Additionaly, you'll get some practical experience with stereo calibration because we must then start by estimating the calibration parameters ourselves.
 Take a look at the [examples in camera-library](https://github.com/tek5030/camera-library/tree/main/example) to see how to use the camera interfaces.
 
 ## Lab overview
@@ -83,3 +78,55 @@ In addition, we will use the following repositories:
   - [stereo_calibration](https://github.com/tek5030/stereo_calibration)
     
 Please continue to the [next step](2-stereo-calibration.md) to get started!
+
+
+### Download the Kitti data
+Go to [http://www.cvlibs.net/datasets/kitti/raw_data.php](http://www.cvlibs.net/datasets/kitti/raw_data.php?type=campus)
+to find the different datasets. Select one of the categories and download a dataset. You will see
+
+> **Downloads:** `[unsynced+unrectified data] [synced+rectified data] [calibration]`
+
+- Dowload `[unsynced+unrectified data]` and extract the files to some directory on your computer.
+   - If you are short on disk space, you may delete the `oxts` and `velodyne_points` right away.
+- Dowload `[calibration]` and extract the files to some directory on your computer.
+
+
+The exctracted data should look like this
+```
+Downloads
+.
+├── 2011_09_28
+│   └── 2011_09_28_drive_0016_extract
+│       ├── image_00
+│       │   ├── data
+│       │   └── timestamps.txt
+│       ├── image_01
+│       │   ├── data
+│       │   └── timestamps.txt
+│       ├── image_02
+│       │   ├── data
+│       │   └── timestamps.txt
+│       ├── image_03
+│       │   ├── data
+│       │   └── timestamps.txt
+│       ├── oxts
+│       │   ├── data
+│       │   ├── dataformat.txt
+│       │   └── timestamps.txt
+│       └── velodyne_points
+│           ├── data
+│           ├── timestamps_end.txt
+│           ├── timestamps_start.txt
+│           └── timestamps.txt
+└── 2011_09_28_calib
+    └── 2011_09_28
+        ├── calib_cam_to_cam.txt
+        ├── calib_imu_to_velo.txt
+        └── calib_velo_to_cam.txt
+```
+
+In the lab, you must specify the directories containing data and calibration.
+- The data directory is the one conatining the `image_xx` folders, e.g. `/path/to/download/2011_09_28/2011_09_28_drive_0016_extract/`
+- The calib directory is the one conatining the `calib_cam_to_cam.txt` file, e.g. `/path/to/download/2011_09_28_calib/2011_09_28/`
+
+Good luck!
