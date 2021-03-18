@@ -15,13 +15,67 @@ It can be used to load image pairs and calibration data from the downloaded data
 
 If you have two webcameras available, we have also implemented the [dual_camera](https://github.com/tek5030/camera-library/blob/main/include/tek5030/dual_camera.h) interface to `cv::VideoCapture`, which lets you use two ordinary cameras to capture stereo images.
 You will in this case need to change the lab code to use this interface instead.
-Additionaly, you'll get some practical experience with stereo calibration because we must then start by estimating the calibration parameters ourselves.
+Additionally, you'll get some practical experience with stereo calibration because we must then start by estimating the calibration parameters ourselves.
 Take a look at the [examples in camera-library](https://github.com/tek5030/camera-library/tree/main/example) to see how to use the camera interfaces.
+
+
+### Download the Kitti data
+Let's start downloading the data right away!
+If you want to construct your own stereo camera, you may of course skip this step.
+
+Go to [http://www.cvlibs.net/datasets/kitti/raw_data.php](http://www.cvlibs.net/datasets/kitti/raw_data.php?type=campus)
+to find the different datasets. Select one of the categories and download a dataset. You will see
+
+> **Downloads:** `[unsynced+unrectified data] [synced+rectified data] [calibration]`
+
+- Download `[unsynced+unrectified data]` and extract the files to some directory on your computer.
+  - If you are short on disk space, you may delete the `oxts` and `velodyne_points` right away.
+- Download `[calibration]` and extract the files to some directory on your computer.
+
+
+The exctracted data should look like this
+```
+Downloads
+.
+├── 2011_09_28
+│   └── 2011_09_28_drive_0016_extract
+│       ├── image_00
+│       │   ├── data
+│       │   └── timestamps.txt
+│       ├── image_01
+│       │   ├── data
+│       │   └── timestamps.txt
+│       ├── image_02
+│       │   ├── data
+│       │   └── timestamps.txt
+│       ├── image_03
+│       │   ├── data
+│       │   └── timestamps.txt
+│       ├── oxts
+│       │   ├── data
+│       │   ├── dataformat.txt
+│       │   └── timestamps.txt
+│       └── velodyne_points
+│           ├── data
+│           ├── timestamps_end.txt
+│           ├── timestamps_start.txt
+│           └── timestamps.txt
+└── 2011_09_28_calib
+    └── 2011_09_28
+        ├── calib_cam_to_cam.txt
+        ├── calib_imu_to_velo.txt
+        └── calib_velo_to_cam.txt
+```
+
+In the lab, you must specify the directories containing data and calibration.
+- The data directory is the one containing the `image_xx` folders, e.g. `/path/to/download/2011_09_28/2011_09_28_drive_0016_extract/`
+- The calib directory is the one containing the `calib_cam_to_cam.txt` file, e.g. `/path/to/download/2011_09_28_calib/2011_09_28/`
+
 
 ## Lab overview
 The main steps of today's lab are:
 
-- Stereo calibration
+- Stereo calibration (please read through this part even if you are using the kitti dataset)
   - We will perform calibration by running the project in the [stereo_calibration](https://github.com/tek5030/stereo_calibration) repository.
 
 - Sparse stereo processing
@@ -78,55 +132,5 @@ In addition, we will use the following repositories:
   - [stereo_calibration](https://github.com/tek5030/stereo_calibration)
     
 Please continue to the [next step](2-stereo-calibration.md) to get started!
-
-
-### Download the Kitti data
-Go to [http://www.cvlibs.net/datasets/kitti/raw_data.php](http://www.cvlibs.net/datasets/kitti/raw_data.php?type=campus)
-to find the different datasets. Select one of the categories and download a dataset. You will see
-
-> **Downloads:** `[unsynced+unrectified data] [synced+rectified data] [calibration]`
-
-- Dowload `[unsynced+unrectified data]` and extract the files to some directory on your computer.
-   - If you are short on disk space, you may delete the `oxts` and `velodyne_points` right away.
-- Dowload `[calibration]` and extract the files to some directory on your computer.
-
-
-The exctracted data should look like this
-```
-Downloads
-.
-├── 2011_09_28
-│   └── 2011_09_28_drive_0016_extract
-│       ├── image_00
-│       │   ├── data
-│       │   └── timestamps.txt
-│       ├── image_01
-│       │   ├── data
-│       │   └── timestamps.txt
-│       ├── image_02
-│       │   ├── data
-│       │   └── timestamps.txt
-│       ├── image_03
-│       │   ├── data
-│       │   └── timestamps.txt
-│       ├── oxts
-│       │   ├── data
-│       │   ├── dataformat.txt
-│       │   └── timestamps.txt
-│       └── velodyne_points
-│           ├── data
-│           ├── timestamps_end.txt
-│           ├── timestamps_start.txt
-│           └── timestamps.txt
-└── 2011_09_28_calib
-    └── 2011_09_28
-        ├── calib_cam_to_cam.txt
-        ├── calib_imu_to_velo.txt
-        └── calib_velo_to_cam.txt
-```
-
-In the lab, you must specify the directories containing data and calibration.
-- The data directory is the one conatining the `image_xx` folders, e.g. `/path/to/download/2011_09_28/2011_09_28_drive_0016_extract/`
-- The calib directory is the one conatining the `calib_cam_to_cam.txt` file, e.g. `/path/to/download/2011_09_28_calib/2011_09_28/`
 
 Good luck!

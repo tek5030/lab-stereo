@@ -1,5 +1,5 @@
 # Step 3: Sparse stereo processing
-Now, lets do some stereo processing!
+Now, let's do some stereo processing!
 
 ## 1. Improve point correspondences
 Go to `SparseStereoMatcher::extractGoodMatches()` in [sparse_stereo_matcher.cpp:36](https://github.com/tek5030/lab_07/blob/main/sparse_stereo_matcher.cpp#L36).
@@ -37,4 +37,4 @@ Go to [lab_7.cpp:80](https://github.com/tek5030/lab_07/blob/main/lab_7.cpp#L80).
 Here, the `point_colors` are currently set to 255 (white).
 Your task is to replace it with the intensity level of the corresponding pixel in the left image.
 
-Please continue to the [next step](4-dense-stereo.md), where we explore dense stereo processing!
+Please continue to the [next step](4-dense-stereo-processing.md), where we explore dense stereo processing!

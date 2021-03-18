@@ -1,6 +1,9 @@
 # Step 2: Stereo calibration
+You will not need to calibrate the cameras from the kitti dataset, but please _read_ through this step anyway to get an idea of what this process involves.
+
 We have created a separate project for stereo calibration, so start by cloning the repository [stereo_calibration](https://github.com/tek5030/stereo_calibration) on your machine.
 Then open it as a new CLion project.
+
 
 ## About the calibration target
 ![Chessboard](img/chessboard_w8_h5.png)
@@ -58,5 +61,5 @@ When you are happy with the calibration, copy the two files ```intrinsics.yml```
 into the lab_7 project folder.
 
 
-Continue to the [next step](3-sparse-stereo.md).
+Continue to the [next step](3-sparse-stereo-processing.md).
 
