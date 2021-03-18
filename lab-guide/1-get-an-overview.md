@@ -2,7 +2,6 @@
 We will start by presenting an overview of the lab and the contents of this project.
 
 ## Stereo camera
-
 In this lab we will experiment with stereo processing using the [Kitti Dataset](http://www.cvlibs.net/datasets/kitti/index.php) which will provide to us:
   - Raw (unsynced+unrectified) and processed (synced+rectified) grayscale stereo sequences (0.5 Megapixels, stored in png format)
   - Raw (unsynced+unrectified) and processed (synced+rectified) color stereo sequences (0.5 Megapixels, stored in png format)
@@ -18,6 +17,14 @@ You will in this case need to change the lab code to use this interface instead.
 Additionally, you'll get some practical experience with stereo calibration because we must then start by estimating the calibration parameters ourselves.
 Take a look at the [examples in camera-library](https://github.com/tek5030/camera-library/tree/main/example) to see how to use the camera interfaces.
 
+Please install [camera-library](https://github.com/tek5030/camera-library) now by writing these commands in you terminal (from an appropriate location):
+```bash
+git clone --depth 1 https://github.com/tek5030/camera-library
+cmake -S camera-library -B camera-library/build
+sudo cmake --build camera-library/build --target install
+# If you want to remove the code:
+sudo rm -rf camera-library
+```
 
 ### Download the Kitti data
 Let's start downloading the data right away!

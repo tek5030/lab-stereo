@@ -4,7 +4,7 @@
 #include "stereo_calibration.h"
 #include "viewer_3d.h"
 #include "visualization.h"
-#include "tek5030/realsense_stereo.h"
+#include "tek5030/kitti_camera.h"
 
 #include "opencv2/calib3d.hpp"
 #include "opencv2/highgui.hpp"
@@ -15,19 +15,22 @@
 #include <iostream>
 
 using namespace tek5030;
-using namespace tek5030::RealSense;
 
 void lab7()
 {
-  StereoCamera camera(StereoCamera::CaptureMode::UNRECTIFIED);
-  camera.setLaserMode(StereoCamera::LaserMode::OFF);
+  // TODO 0: Fill in correct paths to the kitti dataset.
+  const std::string dataset_path{"replace with path to the directory containing datasets"};
+  const std::string calib_path{"replace with path to the directory containing calibration data"};
+  const bool color = false;
+
+  KittiCamera camera(dataset_path, calib_path, color);
 
   cv::Ptr<cv::Feature2D> detector = cv::FastFeatureDetector::create();
   cv::Ptr<cv::Feature2D> desc_extractor = cv::BRISK::create(30, 0);
 
   SparseStereoMatcher stereo_matcher{detector, desc_extractor};
 
-  const StereoCalibration calibration("../intrinsics.yml", "../extrinsics.yml", camera.getResolution(StereoCamera::CameraStream::LEFT));
+  const StereoCalibration calibration(camera);
 
   const std::string matching_win{"Stereo matching"};
   const std::string depth_win{"Stereo depth"};
@@ -98,7 +101,7 @@ void lab7()
       {
         // TODO (7/7): Compute depth in meters. Hint: same as todo 3, but without a loop
         cv::Mat dense_depth = dense_disparity;
-        constexpr float max_depth = 5.f;
+        constexpr float max_depth = 50.f;
         dense_depth.setTo(0, (dense_disparity < 0) | (dense_depth > max_depth));
         dense_depth /= max_depth;
 
