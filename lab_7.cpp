@@ -23,7 +23,7 @@ void lab7()
   camera.setLaserMode(StereoCamera::LaserMode::OFF);
 
   cv::Ptr<cv::Feature2D> detector = cv::FastFeatureDetector::create();
-  cv::Ptr<cv::Feature2D> desc_extractor = cv::BRISK::create(30, 0);
+  cv::Ptr<cv::Feature2D> desc_extractor = cv::ORB::create(2000, 1.2, 1);
 
   SparseStereoMatcher stereo_matcher{detector, desc_extractor};
 

@@ -9,19 +9,15 @@ SparseStereoMatcher::SparseStereoMatcher(cv::Ptr<cv::Feature2D> detector,
 
 void SparseStereoMatcher::match(const tek5030::StereoPair& stereo_img)
 {
-  const int n_grid_cols = stereo_img.left.cols / 16;
-  const int n_grid_rows = stereo_img.left.rows / 16;
-  const int patch_width = 32;
-
   // Detect and describe features in the left image.
   keypoints_left_.clear();
-  keypoints_left_ = detectInGrid(stereo_img.left, detector_, {n_grid_cols, n_grid_rows}, 1, patch_width);
+  detector_->detect(stereo_img.left, keypoints_left_);
   cv::Mat query_descriptors;
   desc_extractor_->compute(stereo_img.left, keypoints_left_, query_descriptors);
 
   // Detect and describe features in the right image.
   keypoints_right_.clear();
-  keypoints_right_ = detectInGrid(stereo_img.right, detector_, {n_grid_cols, n_grid_rows}, 1, patch_width);
+  detector_->detect(stereo_img.right, keypoints_right_);
   cv::Mat train_descriptors;
   desc_extractor_->compute(stereo_img.right, keypoints_right_, train_descriptors);
 
