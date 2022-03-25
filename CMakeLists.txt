@@ -10,7 +10,7 @@ endif ()
 
 # Add libraries.
 find_package(OpenCV 4 CONFIG REQUIRED)
-find_package(tek5030 CONFIG REQUIRED)
+find_package(tek5030 CONFIG OPTIONAL_COMPONENTS rs2)
 
 add_executable(${PROJECT_NAME}
   cv_stereo_matcher_wrap.h
@@ -33,6 +33,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   ${OpenCV_LIBS}
   tek5030::tek5030
   )
+
+if(TARGET tek5030::rs2)
+  target_link_libraries(${PROJECT_NAME} PRIVATE tek5030::rs2)
+endif()
 
 target_compile_options(${PROJECT_NAME} PRIVATE ${compiler_options})
 set_target_properties(${PROJECT_NAME} PROPERTIES
