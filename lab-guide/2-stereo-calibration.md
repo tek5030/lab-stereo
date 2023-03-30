@@ -1,5 +1,6 @@
+_If you are working with images from the Kitti dataset, you will not need to calibrate the cameras. Still, **please read through this step anyway** to get an idea of what this process involves._
+
 # Step 2: Stereo calibration
-You will not need to calibrate the cameras from the kitti dataset, but please _read_ through this step anyway to get an idea of what this process involves.
 
 We have created a separate project for stereo calibration, so start by cloning the repository [stereo_calibration](https://github.com/tek5030/stereo_calibration) on your machine.
 Then open it as a new CLion project.
