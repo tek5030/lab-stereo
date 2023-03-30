@@ -17,11 +17,15 @@ It will illuminate the scene with a dotted pattern.
 The D435 is precalibrated, and it can provide us with rectified stereo images.
 To give you some practical experience with stereo calibration, we will instead capture unrectified images from the camera, and start by estimating the calibration parameters ourselves.
 
-We have implemented a simple interface to the RealSense camera for the course in the [camera-library](https://github.com/tek5030/camera-library) repository.
+We have implemented a simple interface to the RealSense camera for the course in the [camera-library] repository.
 This library has already been downloaded and installed on the lab machines.
 If you are doing this lab without access to a RealSense stereo camera, we have also implemented the [dual_camera](https://github.com/tek5030/camera-library/blob/main/include/tek5030/dual_camera.h) interface to `cv::VideoCapture`, which lets you use two ordinary cameras to capture stereo images.
 You will in this case need to change the lab code to use this interface instead.
 Take a look at the [examples in camera-library](https://github.com/tek5030/camera-library/tree/main/example) to see how to use the camera interfaces.
+
+If you are not on a lab computer, please install [camera-library] now by following the instructions in its README file.
+
+[camera-library]: https://github.com/tek5030/camera-library
 
 ## Lab overview
 The main steps of today's lab are:
@@ -45,9 +49,9 @@ The main steps of today's lab are:
 We have chosen to distribute the code on the following files:
 - *main.cpp*
   
-  Starts lab 7, catches any exceptions and prints their error message on the console.
+  Starts the lab, catches any exceptions and prints their error message on the console.
 
-- *lab_7.h*, *lab_7.cpp*
+- *lab_stereo.h*, *lab_stereo.cpp*
 
   Implements the lab 7 loop. 
   You will add missing functionality to this loop.

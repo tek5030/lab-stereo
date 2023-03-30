@@ -1,12 +1,12 @@
 # Step 4: Dense stereo processing
 
 ## 6. Dense stereo processing
-Go to [lab_7.cpp:92](https://github.com/tek5030/lab_07/blob/main/lab_7.cpp#L92).
+Go to [lab_stereo.cpp:92](https://github.com/tek5030/lab_07/blob/main/lab_stereo.cpp#L92).
 Here, an empty `cv::Ptr<cv::stereo::StereoMatcher>` is created.
 Your task is to create a proper [`cv::stereo::StereoBinarySGBM` matcher](https://docs.opencv.org/4.0.1/d1/d9f/classcv_1_1stereo_1_1StereoBinarySGBM.html) instead.
 
 ## 7. Dense depth instead from dense disparity
-Go to [lab_7.cpp:99](https://github.com/tek5030/lab_07/blob/main/lab_7.cpp#L99).
+Go to [lab_stereo.cpp:99](https://github.com/tek5030/lab_07/blob/main/lab_stereo.cpp#L99).
 Here, `dense_depth` is set equal to `dense_disparity`.
 Your task is to compute the correct `dense_depth` in meters.
 
