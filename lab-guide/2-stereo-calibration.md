@@ -55,11 +55,11 @@ The *stereo_calibration* project is conceptually divided into two parts:
         - ```intrinsics.yml``` contains the two perspective camera models and distortion coefficients.
         - ```extrinsics.yml``` contains the relative pose between the two cameras as well as the rotations and homographies that enable us to perform stereo rectification.
 
-## Calibrate and copy the calibration files into lab_7
+## Calibrate and copy the calibration files into lab-stereo
 Run the stereo_calibration project.
 
 When you are happy with the calibration, copy the two files ```intrinsics.yml``` and ```extrinsics.yml``` 
-into the lab_7 project folder.
+into the `lab-stereo` project folder.
 
 
 Continue to the [next step](3-sparse-stereo-processing.md).

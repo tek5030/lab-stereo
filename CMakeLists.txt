@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.1)
-project(lab_7_stereo)
+project(lab_stereo)
 
 if(MSVC)
   set(compiler_options /W4)
@@ -14,13 +14,13 @@ find_package(tek5030 CONFIG REQUIRED)
 
 add_executable(${PROJECT_NAME}
   cv_stereo_matcher_wrap.h
-  lab_7.h
+  lab_stereo.h
   sparse_stereo_matcher.h
   stereo_calibration.h
   viewer_3d.h
   visualization.h
   #
-  lab_7.cpp
+  lab_stereo.cpp
   main.cpp
   sparse_stereo_matcher.cpp
   stereo_calibration.cpp

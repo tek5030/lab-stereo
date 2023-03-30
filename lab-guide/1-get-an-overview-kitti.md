@@ -101,11 +101,11 @@ The main steps of today's lab are:
 We have chosen to distribute the code on the following files:
 - *main.cpp*
   
-  Starts lab 7, catches any exceptions and prints their error message on the console.
+  Starts the lab, catches any exceptions and prints their error message on the console.
 
-- *lab_7.h*, *lab_7.cpp*
+- *lab_stereo.h*, *lab_stereo.cpp*
 
-  Implements the lab 7 loop. 
+  Implements the stereo lab loop. 
   You will add missing functionality to this loop.
   
 - *stereo_calibration.h*, *stereo_calibration.cpp*

@@ -16,7 +16,7 @@ Your task is to make it return the proper disparities instead.
 Hint: It's in lecture 7.2.
 
 ## 3. Compute depth
-Go to [lab_7.cpp:74](https://github.com/tek5030/lab_07/blob/main/lab_7.cpp#L74).
+Go to [lab_stereo.cpp:74](https://github.com/tek5030/lab_07/blob/main/lab_stereo.cpp#L74).
 We will here compute the depth in meters for each correspondence.
 Currently the depth is set to be equal to the disparity.
 Your task is to compute the proper depth.
@@ -25,7 +25,7 @@ Hint: Look at ```SparseStereoMatcher::computeDisparites``` to see the structure 
 ```stereo_matcher::point_disparities()```.
 
 ## 4. Compute 3D points
-Go to [lab_7.cpp:85](https://github.com/tek5030/lab_07/blob/main/lab_7.cpp#L85).
+Go to [lab_stereo.cpp:85](https://github.com/tek5030/lab_07/blob/main/lab_stereo.cpp#L85).
 Here, `std::vector<cv::Vec3d> world_points` is created, but it is empty.
 Your task is to compute the 3D point corresponding to each point correspondence.
 
@@ -33,7 +33,7 @@ Hint: point_disparities and world_points are related by the homography **Q** (se
 So use `cv::perspectiveTransform()`!
 
 ## 5. Add intensity to the point cloud
-Go to [lab_7.cpp:80](https://github.com/tek5030/lab_07/blob/main/lab_7.cpp#L80).
+Go to [lab_stereo.cpp:80](https://github.com/tek5030/lab_07/blob/main/lab_stereo.cpp#L80).
 Here, the `point_colors` are currently set to 255 (white).
 Your task is to replace it with the intensity level of the corresponding pixel in the left image.
 
