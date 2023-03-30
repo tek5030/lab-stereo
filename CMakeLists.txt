@@ -46,7 +46,10 @@ target_link_libraries(${exe_name}
   )
 
 if(TARGET tek5030::rs2)  #  if(tek5030_rs2_FOUND) does also work
+  message(STATUS "* Support for Intel® RealSense™ ENABLED")
   target_link_libraries(${exe_name} tek5030::rs2)
+else()
+  message(STATUS "* Support for Intel® RealSense™ DISABLED because component tek5030::rs2 was not found")
 endif()
 
 # Set properties for the executable target.
